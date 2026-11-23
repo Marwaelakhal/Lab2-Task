@@ -1,0 +1,25 @@
+
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check README file
+        run: |
+          if [ -f README.md ]; then
+            echo "README file exists!"
+          else
+            echo "README file is missing!"
+            exit 1
+          fi
